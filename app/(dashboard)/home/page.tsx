@@ -43,6 +43,21 @@ const mockHomeData = {
 }
 
 function ComplianceTable({ title, data }: { title: string; data: any[] }) {
+  const getEmptyStateMessage = (sectionTitle: string) => {
+    switch (sectionTitle) {
+      case "Due Today":
+        return "No compliances are due today. All scheduled items have been completed or rescheduled."
+      case "Overdue":
+        return "No overdue compliances for the selected period."
+      case "Waiting for Client":
+        return "No compliances are currently waiting for client response or action."
+      case "Recently Updated":
+        return "No recent updates to display. Activity will appear here as compliances are modified."
+      default:
+        return `No items in ${sectionTitle.toLowerCase()}.`
+    }
+  }
+
   return (
     <Card className="border-border shadow-none">
       <CardHeader className="pb-3">
@@ -50,7 +65,9 @@ function ComplianceTable({ title, data }: { title: string; data: any[] }) {
       </CardHeader>
       <CardContent>
         {data.length === 0 ? (
-          <div className="py-8 text-center text-sm text-muted-foreground italic">No items {title.toLowerCase()}</div>
+          <div className="py-8 text-center text-sm text-muted-foreground">
+            {getEmptyStateMessage(title)}
+          </div>
         ) : (
           <Table>
             <TableHeader>
@@ -113,7 +130,7 @@ export default function HomePage() {
         <ComplianceTable title="Due Today" data={mockHomeData.due_today} />
         <ComplianceTable title="Overdue" data={mockHomeData.overdue} />
         <ComplianceTable title="Waiting for Client" data={mockHomeData.waiting_for_client} />
-        <ComplianceTable title="Recent Updates" data={mockHomeData.recent_updates} />
+        <ComplianceTable title="Recently Updated" data={mockHomeData.recent_updates} />
       </div>
     </div>
   )
