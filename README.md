@@ -12,37 +12,7 @@ Any changes you make to your deployed app will be automatically pushed to this r
 
 ## Deployment
 
-### GitHub Pages
-
-This project is configured to deploy to GitHub Pages automatically via GitHub Actions.
-
-**Setup Instructions:**
-
-1. **Enable GitHub Pages in your repository:**
-   - Go to your repository Settings → Pages
-   - Under "Source", select "GitHub Actions"
-   - Save the settings
-
-2. **Configure basePath (if needed):**
-   - If your repository name is NOT the root (e.g., `username.github.io`), you need to set the `basePath` in `next.config.mjs`
-   - Uncomment the `basePath` line and set it to your repository name:
-     ```js
-     basePath: process.env.NODE_ENV === 'production' ? '/your-repo-name' : '',
-     ```
-
-3. **Push to main/master branch:**
-   - The workflow will automatically trigger on push to `main` or `master` branch
-   - You can also manually trigger it from the Actions tab
-
-4. **Access your site:**
-   - Your site will be available at: `https://your-username.github.io/repository-name/`
-   - Or if using a custom domain: your configured domain
-
-**Note:** The workflow uses `pnpm` for package management. Make sure your `pnpm-lock.yaml` is committed to the repository.
-
-### Vercel (Alternative)
-
-Your project can also be deployed on Vercel:
+Your project is live at:
 
 **[https://vercel.com/d24sids-projects/v0-data-contract-definition](https://vercel.com/d24sids-projects/v0-data-contract-definition)**
 

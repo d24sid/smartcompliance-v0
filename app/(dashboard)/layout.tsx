@@ -1,13 +1,12 @@
 import type React from "react"
 import { AppHeader } from "@/components/app-header"
-import { AppSidebar } from "@/components/app-sidebar"
 
 // This mock user would be fetched from GET /api/me after login
 const mockUser = {
   id: "user-uuid",
   name: "Rahul Sharma",
   email: "rahul@firm.com",
-  role: "ADMIN" as const,
+  role: "ADMIN",
   firm: {
     id: "firm-uuid",
     name: "Sharma & Co",
@@ -20,14 +19,11 @@ export default function DashboardLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className="min-h-screen flex bg-background">
-      <AppSidebar userRole={mockUser.role} />
-      <div className="flex-1 flex flex-col ml-64">
-        <AppHeader user={mockUser} />
-        <main className="flex-1 overflow-auto p-6 md:p-8">
-          <div className="mx-auto max-w-7xl">{children}</div>
-        </main>
-      </div>
+    <div className="min-h-screen flex flex-col bg-background">
+      <AppHeader user={mockUser} />
+      <main className="flex-1 overflow-auto p-6 md:p-8">
+        <div className="mx-auto max-w-7xl">{children}</div>
+      </main>
     </div>
   )
 }

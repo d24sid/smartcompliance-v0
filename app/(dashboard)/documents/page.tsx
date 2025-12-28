@@ -22,7 +22,13 @@ const mockDocuments = [
   },
 ]
 
-export default function DocumentVaultPage() {
+export default async function DocumentVaultPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}) {
+  await searchParams
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">

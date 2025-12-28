@@ -43,15 +43,6 @@ const mockDocuments = [
   },
 ]
 
-// Generate static params for static export
-export async function generateStaticParams() {
-  // Mock client IDs - in production, this would fetch from API
-  return [
-    { clientId: "client-uuid" },
-    { clientId: "client-2" },
-  ]
-}
-
 export default async function ClientDetailPage({ params }: { params: Promise<{ clientId: string }> }) {
   const resolvedParams = await params
   const clientId = resolvedParams.clientId

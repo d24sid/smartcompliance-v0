@@ -49,17 +49,6 @@ const mockDocs = [
 
 const STAGES = ["NOT_STARTED", "IN_PROGRESS", "WAITING_FOR_CLIENT", "UNDER_REVIEW", "FILED"]
 
-// Generate static params for static export
-export async function generateStaticParams() {
-  // Mock compliance IDs - in production, this would fetch from API
-  return [
-    { complianceId: "compliance-uuid" },
-    { complianceId: "comp-1" },
-    { complianceId: "comp-2" },
-    { complianceId: "comp-3" },
-  ]
-}
-
 export default async function ComplianceDetailPage({ params }: { params: Promise<{ complianceId: string }> }) {
   const resolvedParams = await params
   const complianceId = resolvedParams.complianceId

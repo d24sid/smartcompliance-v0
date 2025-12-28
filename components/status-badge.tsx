@@ -1,59 +1,50 @@
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
 
-// Status types from DATA_CONTRACT.md
-type ComplianceStatus = "NOT_STARTED" | "IN_PROGRESS" | "WAITING_FOR_CLIENT" | "UNDER_REVIEW" | "FILED" | "OVERDUE"
-type TaskStage = "NOT_STARTED" | "IN_PROGRESS" | "WAITING_FOR_CLIENT" | "UNDER_REVIEW" | "FILED"
-type DocumentStatus = "DRAFT" | "FILED"
-
-type StatusType = ComplianceStatus | TaskStage | DocumentStatus | string
+type StatusType = "PENDING" | "IN_PROGRESS" | "WAITING_FOR_CLIENT" | "REVIEW_REQUIRED" | "COMPLETED" | "OVERDUE"
 
 interface StatusBadgeProps {
-  status: StatusType
+  status: StatusType | string
   className?: string
 }
 
 const statusConfig: Record<string, { label: string; className: string }> = {
-  NOT_STARTED: {
-    label: "Not Started",
-    className: "bg-muted text-muted-foreground hover:bg-muted border-border",
+  PENDING: {
+    label: "Pending",
+    className: "bg-slate-100 text-slate-700 hover:bg-slate-100 border-slate-200",
   },
   IN_PROGRESS: {
     label: "In Progress",
-    className: "bg-primary/10 text-primary hover:bg-primary/20 border-primary/20",
+    className: "bg-blue-100 text-blue-700 hover:bg-blue-100 border-blue-200",
   },
   WAITING_FOR_CLIENT: {
     label: "Waiting for Client",
-    className: "bg-warning/20 text-warning-foreground hover:bg-warning/30 border-warning/30",
+    className: "bg-amber-100 text-amber-700 hover:bg-amber-100 border-amber-200",
   },
-  UNDER_REVIEW: {
-    label: "Under Review",
-    className: "bg-accent/20 text-accent-foreground hover:bg-accent/30 border-accent/30",
+  REVIEW_REQUIRED: {
+    label: "Review Required",
+    className: "bg-purple-100 text-purple-700 hover:bg-purple-100 border-purple-200",
   },
-  FILED: {
-    label: "Filed",
-    className: "bg-success/20 text-success-foreground hover:bg-success/30 border-success/30",
+  COMPLETED: {
+    label: "Completed",
+    className: "bg-emerald-100 text-emerald-700 hover:bg-emerald-100 border-emerald-200",
   },
   OVERDUE: {
     label: "Overdue",
-    className: "bg-critical/20 text-critical-foreground hover:bg-critical/30 border-critical/30",
-  },
-  DRAFT: {
-    label: "Draft",
-    className: "bg-muted text-muted-foreground hover:bg-muted border-border",
+    className: "bg-red-100 text-red-700 hover:bg-red-100 border-red-200",
   },
 }
 
 export function StatusBadge({ status, className }: StatusBadgeProps) {
   const config = statusConfig[status] || {
     label: status.replace(/_/g, " "),
-    className: "bg-muted text-muted-foreground hover:bg-muted border-border",
+    className: "bg-slate-100 text-slate-700 hover:bg-slate-100 border-slate-200",
   }
 
   return (
     <Badge
       variant="outline"
-      className={cn("font-medium px-2 py-0.5 whitespace-nowrap", config.className, className)}
+      className={cn("font-medium capitalize px-2 py-0.5 whitespace-nowrap", config.className, className)}
     >
       {config.label}
     </Badge>
