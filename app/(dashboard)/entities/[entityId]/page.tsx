@@ -29,6 +29,14 @@ const mockCompliances = [
   },
 ]
 
+// Generate static params for static export
+export async function generateStaticParams() {
+  // Mock entity IDs - in production, this would fetch from API
+  return [
+    { entityId: "entity-uuid" },
+  ]
+}
+
 export default async function EntityDetailPage({ params }: { params: Promise<{ entityId: string }> }) {
   const resolvedParams = await params
   const entityId = resolvedParams.entityId
